@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="OpenVox: Real-time Instance-level Open-vocabulary Probabilistic Voxel Representation">
+  <meta name="keywords" content="OpenVox,  Open-Vocabulary, voxel representation, probabilistic">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenVox</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+  <!-- <link rel="stylesheet" href="./static/css/foundation.css"/> -->
+  <link rel="stylesheet" href="./static/css/twentytwenty.css"/>
+  <link rel="stylesheet" href="./static/css/titleCenter.css"/>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/jquery.twentytwenty.js"></script>
+  <script>
+    $(function(){
+      $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.7});
+      $(".twentytwenty-container[data-orientation='vertical']").twentytwenty({default_offset_pct: 0.3, orientation: 'vertical'});
+    });
+    </script>
+  <style>
+    .video-wrapper {
+      text-align: center; /* 水平居中 */
+    }
+
+    .video-size {
+      width: 80%;  /* 控制视频宽度 */
+      height: auto; /* 保持视频纵横比 */
+      margin: 0 auto; /* 保证视频在块级元素中居中 */
+    }
+
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto auto auto auto auto;
+      gap: 10px;
+      padding: 0;
+    }
+    
+    .grid-container > div {
+      text-align: center;
+      padding: 0;
+      font-size: 30px;
+    }
+    
+    .item1 {
+      grid-column: 1 / 4;
+    }
+    .item2 {
+      grid-column: 5 / 8;
+    }
+    .item3 {
+      grid-column: 1 / 4;
+    }
+    .item4 {
+      grid-column: 5 / 8;
+    }
+    
+    .content h4 {
+      font-size: 16px; !important;
+      padding: 0;
+      margin: 0; !important;
+    }
+    
+    hr {
+      background-color: lightgray;!important;
+    }
+    
+    </style>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">OpenVox: Real-time Instance-level Open-vocabulary Probabilistic Voxel Representation</h1>
+          <h1 class="title is-4 publication-title"> IROS 2025 Under Review</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://bit-dyn.github.io/">Yinan Deng</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href=" ">Bicheng Yao</a><sup>1</sup><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href=" ">Yihang Tang</a><sup>1</sup><sup>*</sup>,
+            </span>
+            <span class="author-block">
+              <a href=" ">Yi Yang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://yfyue-bit.github.io/">Yufeng Yue</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Beijing Institute of Technology</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal contribution</span>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2502.16528"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2502.16528"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=nO1PyF6hSTo"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/BIT-DYN/OpenVox"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <style>
+        .title.is-3 {
+          text-align: center;
+        }
+      </style>
+      <h2 class="title is-3">Poster</h2>
+      <img id="teaser" src="./static/images/poster.jpg" alt="teaser">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf"> OpenVox, a framework of real-time instance-level open-vocabulary probabilistic voxel representation. </span>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/nO1PyF6hSTo?si=8fkFUW7-_j2WTMYx"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p style="text-indent: 2em;">
+            In recent years, vision-language models (VLMs) have advanced open-vocabulary mapping, enabling mobile robots to simultaneously achieve environmental reconstruction and high-level semantic understanding.
+While integrated object cognition helps mitigate semantic ambiguity in point-wise feature maps, efficiently obtaining rich semantic understanding and robust incremental reconstruction at the instance-level remains challenging.
+To address these challenges, we introduce OpenVox, a real-time incremental open-vocabulary probabilistic  instance voxel representation.
+In the front-end, we design an efficient instance segmentation and comprehension pipeline that enhances language reasoning through encoding caption.
+In the back-end, we implement probabilistic instance voxels and formalize the cross-frame incremental fusion process into two subtasks: instance association and live map evolution, ensuring robustness to sensor and segmentation noise. 
+Extensive evaluations across multiple datasets demonstrate that OpenVox achieves state-of-the-art performance in zero-shot instance segmentation, semantic segmentation, and open-vocabulary retrieval. Furthermore, real-world robotics experiments validate OpenVox's capability for stable, real-time operation.
+        </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <style>
+        .title.is-3 {
+          text-align: center;
+        }
+      </style>
+      <h2 class="title is-3">Framework</h2>
+      <div class="content has-text-justified">
+        <p style="text-indent: 2em;">
+          In the front-end, the Instance Segmentation & Understanding module implements an efficient pipeline for instance-level semantic understanding, powered by caption encoding. It processes RGB image frames to generate 2D instance segmentation masks and their corresponding semantic annotations.
+          In the back-end, we project the 2D masks onto a 3D map and perform probabilistic updating. This process is modeled as two subtasks: instance association and map updating. The first subtask involves associating instances from the observed masks and maps by solving the maximum likelihood estimation (MLE) problem, while the second subtask updates the voxel instance vector by solving the maximum a posteriori (MAP) problem.
+          </p>
+      </div>
+      <img id="teaser" src="./static/images/framework.jpg" alt="teaser">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <!-- Animation. -->
+      <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+
+        <!-- Interpolating. -->
+        <h3 class="title is-4">3D Zero-shot Instance Segmentation</h3>
+
+        
+        <p class="caption selection" style="grid-column-start: 1; grid-column-end: 3;">
+          Visualisation of scene
+          <select id="instance-selector" class="instance_selector" style="padding: 2px; background:#f0f0f0; border:none; font-family: 'Noto Sans', sans-serif; font-size:16px;">
+                    <option value="room_1" selected>room_1</option>
+                    <option value="office_1">office_1</option>
+                    <option value="office_3">office_3</option>
+                    <option value="scene0220_02">scene0220_02</option>
+                    <option value="scene0592_01">scene0592_01</option>
+                    <option value="scene0696_02">scene0696_02</option>
+          </select>
+              obtaind by different methods.
+        </p>
+          
+
+        <br/>
+        <br/>
+        
+          
+        <div class="instance_id room_1">
+          <div style="display: flex;">
+            <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
+              <img src="./static/images/3D_ins/cg_room1.png" alt="ConceptGraphs"/>
+              <img src="./static/images/3D_ins/ours_room1.png" alt="Ours"/>
+            </div>
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+              <img src="./static/images/3D_ins/rgb_room1.png" alt="RGB"/>
+            </div>
+          </div>
+        </div>
+
+          <div class="instance_id office_1">
+          <div style="display: flex;">
+            <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
+              <img src="./static/images/3D_ins/cg_office1.png" alt="ConceptGraphs"/>
+              <img src="./static/images/3D_ins/ours_office1.png" alt="Ours"/>
+            </div>
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+              <img src="./static/images/3D_ins/rgb_office1.png" alt="RGB"/>
+            </div>
+          </div>
+          </div>
+
+          
+          <div class="instance_id office_3">
+            <div style="display: flex;">
+              <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
+                <img src="./static/images/3D_ins/cg_office3.png" alt="ConceptGraphs"/>
+                <img src="./static/images/3D_ins/ours_office3.png" alt="Ours"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/3D_ins/rgb_office3.png" alt="RGB"/>
+              </div>
+            </div>
+            </div>
+
+            
+          <div class="instance_id scene0220_02">
+            <div style="display: flex;">
+              <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
+                <img src="./static/images/3D_ins/cg_0220.png" alt="ConceptGraphs"/>
+                <img src="./static/images/3D_ins/ours_0220.png" alt="Ours"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/3D_ins/rgb_0220.png" alt="RGB"/>
+              </div>
+            </div>
+            </div>
+
+
+            
+          <div class="instance_id scene0592_01">
+            <div style="display: flex;">
+              <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
+                <img src="./static/images/3D_ins/cg_0592.png" alt="ConceptGraphs"/>
+                <img src="./static/images/3D_ins/ours_0592.png" alt="Ours"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/3D_ins/rgb_0592.png" alt="RGB"/>
+              </div>
+            </div>
+            </div>
+
+
+            
+          <div class="instance_id scene0696_02">
+            <div style="display: flex;">
+              <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
+                <img src="./static/images/3D_ins/cg_0696.png" alt="ConceptGraphs"/>
+                <img src="./static/images/3D_ins/ours_0696.png" alt="Ours"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/3D_ins/rgb_0696.png" alt="RGB"/>
+              </div>
+            </div>
+            </div>
+
+
+
+          <div class="columns is-centered">
+            <!-- Wheel -->
+            <div class="column">
+              <div class="content" center="">
+                <h4 class="title is-6 has-text-centered">Segmentation</h4>
+              </div>
+            </div>
+            <!-- Wheel -->
+            <div class="column">
+              <div class="content" center="">
+                <h4 class="title is-6 has-text-centered">GT RGB</h4>
+              </div>
+            </div>
+          </div>
+
+
+        <br/>
+        <!--/ Interpolating. -->
+
+        <!-- Interpolating. -->
+        <h3 class="title is-4">3D Zero-shot Semantic Segmentation</h3>
+
+        
+        <p class="caption selection" style="grid-column-start: 1; grid-column-end: 3;">
+          Visualisation of scene
+          <select id="semantic-selector" class="semantic_selector" style="padding: 2px; background:#f0f0f0; border:none; font-family: 'Noto Sans', sans-serif; font-size:16px;">
+                    <option value="room_0" selected>room_0</option>
+                    <option value="office_2">office_2</option>
+                    <option value="scene0030_02">scene0030_02</option>
+                    <option value="scene0673_04">scene0673_04</option>
+          </select>
+              obtaind by different methods.
+        </p>
+          
+
+        <br/>
+        <br/>
+
+        
+        <div class="semantic_id room_0">
+          <div style="display: flex;">
+            <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+              <img src="./static/images/3D_sem/ConceptFusion_room0.png" alt="ConceptFusion"/>
+              <img src="./static/images/3D_sem/ConceptGraphs_room0.png" alt="ConceptGraphs"/>
+              <img src="./static/images/3D_sem/Open-Fusion_room0.png" alt="Open-Fusion"/>
+              <img src="./static/images/3D_sem/ours_room0.png" alt="Ours"/>
+            </div>
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+              <img src="./static/images/3D_sem/rgb_room0.png" alt="RGB"/>
+            </div>
+          </div>
+        </div>
+
+        
+        
+        <div class="semantic_id office_2">
+          <div style="display: flex;">
+            <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+              <img src="./static/images/3D_sem/ConceptFusion_office2.png" alt="ConceptFusion"/>
+              <img src="./static/images/3D_sem/ConceptGraphs_office2.png" alt="ConceptGraphs"/>
+              <img src="./static/images/3D_sem/Open-Fusion_office2.png" alt="Open-Fusion"/>
+              <img src="./static/images/3D_sem/ours_office2.png" alt="Ours"/>
+            </div>
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+              <img src="./static/images/3D_sem/rgb_office2.png" alt="RGB"/>
+            </div>
+          </div>
+        </div>
+
+        
+        
+        <div class="semantic_id scene0030_02">
+          <div style="display: flex;">
+            <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+              <img src="./static/images/3D_sem/ConceptFusion_0030.png" alt="ConceptFusion"/>
+              <img src="./static/images/3D_sem/ConceptGraphs_0030.png" alt="ConceptGraphs"/>
+              <img src="./static/images/3D_sem/Open-Fusion_0030.png" alt="Open-Fusion"/>
+              <img src="./static/images/3D_sem/ours_0030.png" alt="Ours"/>
+            </div>
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+              <img src="./static/images/3D_sem/rgb_0030.png" alt="RGB"/>
+            </div>
+          </div>
+        </div>
+
+        
+        
+        <div class="semantic_id scene0673_04">
+          <div style="display: flex;">
+            <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+              <img src="./static/images/3D_sem/ConceptFusion_0673.png" alt="ConceptFusion"/>
+              <img src="./static/images/3D_sem/ConceptGraphs_0673.png" alt="ConceptGraphs"/>
+              <img src="./static/images/3D_sem/Open-Fusion_0673.png" alt="Open-Fusion"/>
+              <img src="./static/images/3D_sem/ours_0673.png" alt="Ours"/>
+            </div>
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+              <img src="./static/images/3D_sem/rgb_0673.png" alt="RGB"/>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="columns is-centered">
+          <!-- Wheel -->
+          <div class="column">
+            <div class="content" center="">
+              <h4 class="title is-6 has-text-centered">Segmentation</h4>
+            </div>
+          </div>
+          <!-- Wheel -->
+          <div class="column">
+            <div class="content" center="">
+              <h4 class="title is-6 has-text-centered">GT RGB</h4>
+            </div>
+          </div>
+        </div>
+
+        <br/>
+        <!-- Re-rendering. -->
+        <h3 class="title is-4">Open-vocabulary Instance Retrieval</h3>
+        <div class="video-wrapper">
+          <img id="teaser" src="./static/images/retrieval.png" alt="teaser" width="750">
+        </div>
+          <h2 class="subtitle has-text-centered">
+          </h2>
+
+          
+
+        <br/>
+        <!--/ Re-rendering. -->
+        <!-- Re-rendering. -->
+        <h3 class="title is-4">Real-World Onboard Experiment</h3>
+        <div class="video-wrapper">
+          <video id="teaser" controls class="video-size">
+            <source src="./static/video/realWorld.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf"> OpenVox has the ability to run online in the real world.. </span>
+      </h2>
+
+          
+        <img id="teaser" src="./static/images/real_car.jpg" alt="teaser" width="600" >
+        </div>
+        
+        
+        
+
+    <!--/ Animation. -->
+    </div>
+    <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+    <script src="./static/js/select.js"></script>
+  </div>
+</section>
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This webpage template is from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. 
+            We sincerely thank <a href="https://keunhong.com/">Keunhong Park</a> for developing and open-sourcing this template.
+          </p>
+        </div>
+      </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
