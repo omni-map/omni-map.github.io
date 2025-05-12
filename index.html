@@ -73,7 +73,15 @@
       padding: 0;
       font-size: 30px;
     }
-    
+
+    .video-prompt {
+      font-size: 0.875rem;
+      font-family: sans-serif;
+      color: #4a4a4a;
+      margin-top: 0.25rem; /* 与标题的间距稍小，约 4px */
+      margin-bottom: 0.5rem; /* 与视频容器的间距适中，约 8px */
+    }
+
     .item1 {
       grid-column: 1 / 4;
     }
@@ -123,7 +131,7 @@
               <a href=" ">Jiahui Wang</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href=" ">Yujie Tang</a><sup>1</sup>,
+              <a href="https://bit-tyj.github.io/">Yujie Tang</a><sup>1</sup>,
             </span>
             <span class="author-block">
               <a href=" ">Chenjie Zhao</a><sup>1</sup>,
@@ -282,6 +290,7 @@
       <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Benchmark Results</h2>
+        <p class="has-text-centered video-prompt">Tips: please refresh the page if the display is incomplete</p>
 
         <!-- Interpolating. -->
         <h3 class="title is-4">Optics: Image Rendering</h3>
@@ -690,6 +699,7 @@
   <!-- In-place Manipulation -->
   <section>
     <h3 class="title is-4 has-text-centered">In-place Manipulation</h3>
+    <p class="has-text-centered video-prompt">Tips: please click to view the video</p>
     <div class="video-wrapper">
       <img class="placeholder-img" data-video-src="./static/video/arm.mp4" src="./static/images/arm-placeholder.png" alt="In-place Manipulation Placeholder">
       <h2 class="subtitle has-text-centered">
@@ -703,6 +713,7 @@
   <!-- Mobile Navigation -->
   <section>
     <h3 class="title is-4 has-text-centered">Mobile Navigation</h3>
+    <p class="has-text-centered video-prompt">Tips: please click to view the video</p>
     <div class="video-wrapper">
       <img class="placeholder-img" data-video-src="./static/video/robot.mp4" src="./static/images/robot-placeholder.png" alt="Mobile Navigation Placeholder">
       <h2 class="subtitle has-text-centered">
