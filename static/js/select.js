@@ -1,49 +1,62 @@
 $(function() {
 
-    $('.instance_id').hide();  // 隐藏所有
-    $('.instance_id.room_1').show();  // 只显示 room_1
+    $('.optics').hide();  // 隐藏所有
+    $('.optics.room_2').show();  // 只显示 room_2
 
-    $('.instance_selector').change(function(){
-        var dataset = $('#instance-selector').val();
+    $('.optics_selector').change(function(){
+        var dataset = $('#optics-selector').val();
 
-        $('.instance_id').hide();
+        $('.optics').hide();
         if (dataset === 'office_3') {
-            $('.instance_id.office_3').show();
-        } else if (dataset === 'office_1') {
-            $('.instance_id.office_1').show();
-        } else if (dataset === 'room_1'){
-            $('.instance_id.room_1').show();
-        } else if (dataset === 'scene0220_02'){
-            $('.instance_id.scene0220_02').show();
-        } else if (dataset === 'scene0592_01'){
-            $('.instance_id.scene0592_01').show();
-        } else if (dataset === 'scene0696_02'){
-            $('.instance_id.scene0696_02').show();
+            $('.optics.office_3').show();
+        } else if (dataset === 'scene0059_00') {
+            $('.optics.scene0059_00').show();
+        } else if (dataset === 'scene0106_00'){
+            $('.optics.scene0106_00').show();
+        } else if (dataset === 'room_2') {
+            $('.optics.room_2').show();
         }
-        console.log('.instance_id.' + dataset)
+        console.log('.optics.' + dataset)
     });
 
     
-    $('.semantic_id').hide();  // 隐藏所有
-    $('.semantic_id.room_0').show();  // 只显示 room_1
+    $('.geometry').hide();  // 隐藏所有
+    $('.geometry.scene0181_00').show();  // 只显示 scene0181_00
+
+    $('.geometry_selector').change(function(){
+        var dataset = $('#geometry-selector').val();
+
+        $('.geometry').hide();
+        if (dataset === 'scene0000_00') {
+            $('.geometry.scene0000_00').show();
+        } else if (dataset === 'scene0207_00') {
+            $('.geometry.scene0207_00').show();
+        } else if (dataset === 'scene0059_00'){
+            $('.geometry.scene0059_00').show();
+        } else if (dataset === 'scene0181_00') {
+            $('.geometry.scene0181_00').show();
+        }
+        console.log('.geometry.' + dataset)
+    });
+
+    $('.semantic').hide();  // 隐藏所有
+    $('.semantic.office_2').show();  // 只显示 office_2
 
     $('.semantic_selector').change(function(){
         var dataset = $('#semantic-selector').val();
 
-        $('.semantic_id').hide();
-        if (dataset === 'room_0') {
-            $('.semantic_id.room_0').show();
+        $('.semantic').hide();
+        if (dataset === 'scene0059_00') {
+            $('.semantic.scene0059_00').show();
+        } else if (dataset === 'room_0') {
+            $('.semantic.room_0').show();
+        } else if (dataset === 'scene0181_00'){
+            $('.semantic.scene0181_00').show();
         } else if (dataset === 'office_2') {
-            $('.semantic_id.office_2').show();
-        } else if (dataset === 'scene0030_02'){
-            $('.semantic_id.scene0030_02').show();
-        } else if (dataset === 'scene0673_04'){
-            $('.semantic_id.scene0673_04').show();
+            $('.semantic.office_2').show();
         }
-        console.log('.semantic_id.' + dataset)
+        console.log('.semantic.' + dataset)
     });
-
-
 
     
 });

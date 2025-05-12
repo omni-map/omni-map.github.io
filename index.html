@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="OpenVox: Real-time Instance-level Open-vocabulary Probabilistic Voxel Representation">
-  <meta name="keywords" content="OpenVox,  Open-Vocabulary, voxel representation, probabilistic">
+        content="OmniMap: A Comprehensive Mapping Framework Integrating Optics, Geometry, and Semantics">
+  <meta name="keywords" content="Open-vocabulary, Gaussian Splatting, Mapping, RGB-D perception">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OpenVox</title>
+  <title>OmniMap</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -109,21 +109,27 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">OpenVox: Real-time Instance-level Open-vocabulary Probabilistic Voxel Representation</h1>
-          <h1 class="title is-4 publication-title"> IROS 2025 Under Review</h1>
+          <h1 class="title is-1 publication-title">OmniMap: A Comprehensive Mapping Framework Integrating Optics, Geometry, and Semantics</h1>
+          <!-- <h1 class="title is-4 publication-title"> IROS 2025 Under Review</h1> -->
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://bit-dyn.github.io/">Yinan Deng</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href=" ">Bicheng Yao</a><sup>1</sup><sup>*</sup>,</span>
+              <a href=" ">Jianyu Dou</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href=" ">Yihang Tang</a><sup>1</sup><sup>*</sup>,
+              <a href=" ">Jingyu Zhao</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href=" ">Yi Yang</a><sup>1</sup>,
+              <a href=" ">Jiahui Wang</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://yfyue-bit.github.io/">Yufeng Yue</a><sup>1</sup>
+              <a href=" ">Yujie Tang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href=" ">Tianxing Zhou</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://yfyue-bit.github.io/">Yufeng Yue</a><sup>1</sup><sup>*</sup>
             </span>
           </div>
 
@@ -131,7 +137,7 @@
             <span class="author-block"><sup>1</sup>Beijing Institute of Technology</span>
           </div>
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>*</sup>Equal contribution</span>
+            <span class="author-block"><sup>*</sup>Corresponding Author</span>
           </div>
           <div class="column has-text-centered">
             <div class="publication-links">
@@ -192,9 +198,9 @@
         }
       </style>
       <h2 class="title is-3">Poster</h2>
-      <img id="teaser" src="./static/images/poster.jpg" alt="teaser">
+      <img id="teaser" src="./static/images/poster.png" alt="teaser">
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf"> OpenVox, a framework of real-time instance-level open-vocabulary probabilistic voxel representation. </span>
+        <span class="dnerf"> OmniMap, A Comprehensive Mapping Framework Integrating Optics, Geometry, and Semantics. </span>
       </h2>
     </div>
   </div>
@@ -222,13 +228,15 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p style="text-indent: 2em;">
-            In recent years, vision-language models (VLMs) have advanced open-vocabulary mapping, enabling mobile robots to simultaneously achieve environmental reconstruction and high-level semantic understanding.
-While integrated object cognition helps mitigate semantic ambiguity in point-wise feature maps, efficiently obtaining rich semantic understanding and robust incremental reconstruction at the instance-level remains challenging.
-To address these challenges, we introduce OpenVox, a real-time incremental open-vocabulary probabilistic  instance voxel representation.
-In the front-end, we design an efficient instance segmentation and comprehension pipeline that enhances language reasoning through encoding caption.
-In the back-end, we implement probabilistic instance voxels and formalize the cross-frame incremental fusion process into two subtasks: instance association and live map evolution, ensuring robustness to sensor and segmentation noise. 
-Extensive evaluations across multiple datasets demonstrate that OpenVox achieves state-of-the-art performance in zero-shot instance segmentation, semantic segmentation, and open-vocabulary retrieval. Furthermore, real-world robotics experiments validate OpenVox's capability for stable, real-time operation.
-        </p>
+              Robotic systems demand accurate and comprehensive 3D environment perception, requiring simultaneous capture of a comprehensive representation of photo-realistic appearance (optical), precise layout shape (geometric), and open-vocabulary scene understanding (semantic). 
+              Existing methods typically achieve only partial fulfillment of these requirements while exhibiting optical blurring, geometric irregularities, and semantic ambiguities. 
+              To address these challenges, we propose OmniMap. 
+              Overall, OmniMap represents the first online mapping framework that simultaneously captures optical, geometric, and semantic scene attributes while maintaining real-time performance and model compactness. 
+              At the architectural level, OmniMap employs a tightly coupled 3DGS–Voxel hybrid representation that combines fine-grained modeling with structural stability. 
+              At the implementation level, OmniMap identifies key challenges across different modalities and introduces several innovations: adaptive camera modeling for motion blur and exposure compensation, hybrid incremental representation with normal constraints, and probabilistic fusion for robust instance-level understanding. 
+              Extensive experiments show OmniMap’s superior performance in rendering fidelity, geometric accuracy, and zero-shot semantic segmentation compared to state-of-the-art methods across diverse scenes. 
+              The framework’s versatility is further evidenced through a variety of downstream applications including multi-domain scene Q&A, interactive edition, perception-guided manipulation, and map-assisted navigation.        
+          </p>
         </div>
       </div>
     </div>
@@ -247,11 +255,12 @@ Extensive evaluations across multiple datasets demonstrate that OpenVox achieves
       <h2 class="title is-3">Framework</h2>
       <div class="content has-text-justified">
         <p style="text-indent: 2em;">
-          In the front-end, the Instance Segmentation & Understanding module implements an efficient pipeline for instance-level semantic understanding, powered by caption encoding. It processes RGB image frames to generate 2D instance segmentation masks and their corresponding semantic annotations.
-          In the back-end, we project the 2D masks onto a 3D map and perform probabilistic updating. This process is modeled as two subtasks: instance association and map updating. The first subtask involves associating instances from the observed masks and maps by solving the maximum likelihood estimation (MLE) problem, while the second subtask updates the voxel instance vector by solving the maximum a posteriori (MAP) problem.
+          The 2D Language Embeddings Extractor sequentially combines multiple open-set models for detection, segmentation, captioning, and embedding extraction of objects. 
+          The Probabilistic Voxel Reconstructor incrementally integrates per-frame instance masks and embeddings into 3D space while maintaining voxel-aligned probabilistic instance tuples and a global embedding codebook. 
+          The Motion-Robust 3DGS Incremental Reconstructor initializes new Gaussians from new assigned voxels and renders 2D images under RGB, depth, and normal modalities with parameterized camera models for supervision.
           </p>
       </div>
-      <img id="teaser" src="./static/images/framework.jpg" alt="teaser">
+      <img id="teaser" src="./static/images/framework.png" alt="teaser">
     </div>
   </div>
 </section>
@@ -263,21 +272,19 @@ Extensive evaluations across multiple datasets demonstrate that OpenVox achieves
       <!-- Animation. -->
       <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Results</h2>
+        <h2 class="title is-3">Benchmark Results</h2>
 
         <!-- Interpolating. -->
-        <h3 class="title is-4">3D Zero-shot Instance Segmentation</h3>
+        <h3 class="title is-4">Optics: Image Rendering</h3>
 
         
         <p class="caption selection" style="grid-column-start: 1; grid-column-end: 3;">
           Visualisation of scene
-          <select id="instance-selector" class="instance_selector" style="padding: 2px; background:#f0f0f0; border:none; font-family: 'Noto Sans', sans-serif; font-size:16px;">
-                    <option value="room_1" selected>room_1</option>
-                    <option value="office_1">office_1</option>
+          <select id="optics-selector" class="optics_selector" style="padding: 2px; background:#f0f0f0; border:none; font-family: 'Noto Sans', sans-serif; font-size:16px;">
+                    <option value="room_2" selected>room_2</option>
                     <option value="office_3">office_3</option>
-                    <option value="scene0220_02">scene0220_02</option>
-                    <option value="scene0592_01">scene0592_01</option>
-                    <option value="scene0696_02">scene0696_02</option>
+                    <option value="scene0059_00">scene0059_00</option>
+                    <option value="scene0106_00">scene0106_00</option>
           </select>
               obtaind by different methods.
         </p>
@@ -285,93 +292,69 @@ Extensive evaluations across multiple datasets demonstrate that OpenVox achieves
 
         <br/>
         <br/>
-        
-          
-        <div class="instance_id room_1">
+
+        <div class="optics room_2">
           <div style="display: flex;">
-            <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
-              <img src="./static/images/3D_ins/cg_room1.png" alt="ConceptGraphs"/>
-              <img src="./static/images/3D_ins/ours_room1.png" alt="Ours"/>
+            <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+              <img src="./static/images/optics/1/rtg-slam.png" alt="RTG-SLAM"/>
+              <img src="./static/images/optics/1/gs-slam.png" alt="Gaussian-SLAM"/>
+              <img src="./static/images/optics/1/monogs.png" alt="MonoGS"/>
+              <img src="./static/images/optics/1/ours.png" alt="Ours"/>
             </div>
             <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
-              <img src="./static/images/3D_ins/rgb_room1.png" alt="RGB"/>
+              <img src="./static/images/optics/1/gt.png" alt="RGB"/>
             </div>
           </div>
         </div>
 
-          <div class="instance_id office_1">
-          <div style="display: flex;">
-            <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
-              <img src="./static/images/3D_ins/cg_office1.png" alt="ConceptGraphs"/>
-              <img src="./static/images/3D_ins/ours_office1.png" alt="Ours"/>
-            </div>
-            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
-              <img src="./static/images/3D_ins/rgb_office1.png" alt="RGB"/>
+          <div class="optics office_3">
+            <div style="display: flex;">
+              <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+                <img src="./static/images/optics/2/splatam.png" alt="SplaTAM"/>
+                <img src="./static/images/optics/2/gsfusion.png" alt="GSFusion"/>
+                <img src="./static/images/optics/2/gs-icp-slam.png" alt="GS-ICP-SLAM"/>
+                <img src="./static/images/optics/2/ours.png" alt="Ours"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/optics/2/gt.png" alt="RGB"/>
+              </div>
             </div>
           </div>
+
+          <div class="optics scene0059_00">
+            <div style="display: flex;">
+              <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+                <img src="./static/images/optics/3/cartgs.png" alt="CaRtGS"/>
+                <img src="./static/images/optics/3/hi-slam2.png" alt="HI-SLAM2"/>
+                <img src="./static/images/optics/3/rtg-slam.png" alt="RTG-SLAM"/>
+                <img src="./static/images/optics/3/ours.png" alt="Ours"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/optics/3/gt.png" alt="RGB"/>
+              </div>
+            </div>
           </div>
 
-          
-          <div class="instance_id office_3">
+          <div class="optics scene0106_00">
             <div style="display: flex;">
-              <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
-                <img src="./static/images/3D_ins/cg_office3.png" alt="ConceptGraphs"/>
-                <img src="./static/images/3D_ins/ours_office3.png" alt="Ours"/>
+              <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+                <img src="./static/images/optics/4/gs-slam.png" alt="Gaussian-SLAM"/>
+                <img src="./static/images/optics/4/monogs.png" alt="MonoGS"/>
+                <img src="./static/images/optics/4/splatam.png" alt="SplaTAM"/>
+                <img src="./static/images/optics/4/ours.png" alt="Ours"/>
               </div>
               <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
-                <img src="./static/images/3D_ins/rgb_office3.png" alt="RGB"/>
+                <img src="./static/images/optics/4/gt.png" alt="RGB"/>
               </div>
             </div>
-            </div>
-
-            
-          <div class="instance_id scene0220_02">
-            <div style="display: flex;">
-              <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
-                <img src="./static/images/3D_ins/cg_0220.png" alt="ConceptGraphs"/>
-                <img src="./static/images/3D_ins/ours_0220.png" alt="Ours"/>
-              </div>
-              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
-                <img src="./static/images/3D_ins/rgb_0220.png" alt="RGB"/>
-              </div>
-            </div>
-            </div>
-
-
-            
-          <div class="instance_id scene0592_01">
-            <div style="display: flex;">
-              <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
-                <img src="./static/images/3D_ins/cg_0592.png" alt="ConceptGraphs"/>
-                <img src="./static/images/3D_ins/ours_0592.png" alt="Ours"/>
-              </div>
-              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
-                <img src="./static/images/3D_ins/rgb_0592.png" alt="RGB"/>
-              </div>
-            </div>
-            </div>
-
-
-            
-          <div class="instance_id scene0696_02">
-            <div style="display: flex;">
-              <div class="twentytwenty-container twentytwenty-compare-2" style="width:35%">
-                <img src="./static/images/3D_ins/cg_0696.png" alt="ConceptGraphs"/>
-                <img src="./static/images/3D_ins/ours_0696.png" alt="Ours"/>
-              </div>
-              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
-                <img src="./static/images/3D_ins/rgb_0696.png" alt="RGB"/>
-              </div>
-            </div>
-            </div>
-
+          </div>
 
 
           <div class="columns is-centered">
             <!-- Wheel -->
             <div class="column">
               <div class="content" center="">
-                <h4 class="title is-6 has-text-centered">Segmentation</h4>
+                <h4 class="title is-6 has-text-centered">Rendering results</h4>
               </div>
             </div>
             <!-- Wheel -->
@@ -387,16 +370,127 @@ Extensive evaluations across multiple datasets demonstrate that OpenVox achieves
         <!--/ Interpolating. -->
 
         <!-- Interpolating. -->
-        <h3 class="title is-4">3D Zero-shot Semantic Segmentation</h3>
+        <h3 class="title is-4">Geometry: Mesh Reconstruction</h3>
+
+        
+        <p class="caption selection" style="grid-column-start: 1; grid-column-end: 3;">
+          Visualisation of scene
+          <select id="geometry-selector" class="geometry_selector" style="padding: 2px; background:#f0f0f0; border:none; font-family: 'Noto Sans', sans-serif; font-size:16px;">
+                    <option value="scene0181_00" selected>scene0181_00</option>
+                    <option value="scene0000_00">scene0000_00</option>
+                    <option value="scene0207_00">scene0207_00</option>
+                    <option value="scene0059_00">scene0059_00</option>
+          </select>
+              obtaind by different methods.
+        </p>
+          
+
+        <br/>
+        <br/>
+
+        <div class="geometry scene0181_00">
+          <div style="display: flex;">
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width: 35%;">
+              <img src="./static/images/mesh/1/rgb.png" alt="RGB"/>
+            </div>
+            <div class="twentytwenty-container twentytwenty-compare-4" style="width: 35%; margin-left: 10px; margin-right: 10px;">
+              <img src="./static/images/mesh/1/rtg-slam.png" alt="RTG-SLAM"/>
+              <img src="./static/images/mesh/1/gs-slam.png" alt="Gaussian-SLAM"/>
+              <img src="./static/images/mesh/1/monogs.png" alt="MonoGS"/>
+              <img src="./static/images/mesh/1/ours.png" alt="Ours"/>
+            </div>
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width: 35%;">
+              <img src="./static/images/mesh/1/gt.png" alt="Normal"/>
+            </div>
+          </div>
+        </div>
+
+          <div class="geometry scene0000_00">
+            <div style="display: flex; gap: 10px;">
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/mesh/2/rgb.png" alt="RGB"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+                <img src="./static/images/mesh/2/splatam.png" alt="SplaTAM"/>
+                <img src="./static/images/mesh/2/gsfusion.png" alt="GSFusion"/>
+                <img src="./static/images/mesh/2/gs-icp-slam.png" alt="GS-ICP-SLAM"/>
+                <img src="./static/images/mesh/2/ours.png" alt="Ours"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/mesh/2/gt.png" alt="Normal"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="geometry scene0207_00">
+            <div style="display: flex; gap: 10px;">
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/mesh/3/rgb.png" alt="RGB"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+                <img src="./static/images/mesh/3/cartgs.png" alt="CaRtGS"/>
+                <img src="./static/images/mesh/3/rtg-slam.png" alt="RTG-SLAM"/>
+                <img src="./static/images/mesh/3/gs-slam.png" alt="Gaussian-SLAM"/>
+                <img src="./static/images/mesh/3/ours.png" alt="Ours"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img znowu src="./static/images/mesh/3/gt.png" alt="Normal"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="geometry scene0059_00">
+            <div style="display: flex; gap: 10px;">
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/mesh/4/rgb.png" alt="RGB"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
+                <img src="./static/images/mesh/4/monogs.png" alt="MonoGS"/>
+                <img src="./static/images/mesh/4/splatam.png" alt="SplaTAM"/>
+                <img src="./static/images/mesh/4/gsfusion.png" alt="GSFusion"/>
+                <img src="./static/images/mesh/4/ours.png" alt="Ours"/>
+              </div>
+              <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+                <img src="./static/images/mesh/4/gt.png" alt="Normal"/>
+              </div>
+            </div>
+          </div>
+        
+
+        <div class="columns is-centered">
+          <!-- Wheel -->
+          <div class="column">
+            <div class="content" center="">
+              <h4 class="title is-6 has-text-centered">GT RGB</h4>
+            </div>
+          </div>    
+          <div class="column">
+            <div class="content" center="">
+              <h4 class="title is-6 has-text-centered">Mesh reconstruction results</h4>
+            </div>
+          </div>
+          <!-- Wheel -->
+          <div class="column">
+            <div class="content" center="">
+              <h4 class="title is-6 has-text-centered">GT Normal</h4>
+            </div>
+          </div>
+        </div>
+
+        <br/>
+
+
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Semantics: Zero-shot Segmentation</h3>
 
         
         <p class="caption selection" style="grid-column-start: 1; grid-column-end: 3;">
           Visualisation of scene
           <select id="semantic-selector" class="semantic_selector" style="padding: 2px; background:#f0f0f0; border:none; font-family: 'Noto Sans', sans-serif; font-size:16px;">
-                    <option value="room_0" selected>room_0</option>
-                    <option value="office_2">office_2</option>
-                    <option value="scene0030_02">scene0030_02</option>
-                    <option value="scene0673_04">scene0673_04</option>
+                    <option value="office_2" selected>office_2</option>
+                    <option value="scene0059_00">scene0059_00</option>
+                    <option value="room_0">room_0</option>
+                    <option value="scene0181_00">scene0181_00</option>
           </select>
               obtaind by different methods.
         </p>
@@ -406,113 +500,182 @@ Extensive evaluations across multiple datasets demonstrate that OpenVox achieves
         <br/>
 
         
-        <div class="semantic_id room_0">
-          <div style="display: flex;">
+        <div class="semantic office_2">
+          <div style="display: flex; gap: 10px;">
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+              <img src="./static/images/semantic/1/rgb.png" alt="RGB"/>
+            </div>
             <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
-              <img src="./static/images/3D_sem/ConceptFusion_room0.png" alt="ConceptFusion"/>
-              <img src="./static/images/3D_sem/ConceptGraphs_room0.png" alt="ConceptGraphs"/>
-              <img src="./static/images/3D_sem/Open-Fusion_room0.png" alt="Open-Fusion"/>
-              <img src="./static/images/3D_sem/ours_room0.png" alt="Ours"/>
+              <img src="./static/images/semantic/1/opengs.png" alt="OpenGaussian"/>
+              <img src="./static/images/semantic/1/langsplat.png" alt="LangSplat"/>
+              <img src="./static/images/semantic/1/graspsplat.png" alt="GraspSplats"/>
+              <img src="./static/images/semantic/1/ours.png" alt="Ours"/>
             </div>
             <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
-              <img src="./static/images/3D_sem/rgb_room0.png" alt="RGB"/>
+              <img src="./static/images/semantic/1/gt.png" alt="Semantic"/>
             </div>
           </div>
         </div>
-
         
-        
-        <div class="semantic_id office_2">
-          <div style="display: flex;">
+        <div class="semantic scene0059_00">
+          <div style="display: flex; gap: 10px;">
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+              <img src="./static/images/semantic/2/rgb.png" alt="RGB"/>
+            </div>
             <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
-              <img src="./static/images/3D_sem/ConceptFusion_office2.png" alt="ConceptFusion"/>
-              <img src="./static/images/3D_sem/ConceptGraphs_office2.png" alt="ConceptGraphs"/>
-              <img src="./static/images/3D_sem/Open-Fusion_office2.png" alt="Open-Fusion"/>
-              <img src="./static/images/3D_sem/ours_office2.png" alt="Ours"/>
+              <img src="./static/images/semantic/2/conceptfusion.png" alt="ConceptFusion"/>
+              <img src="./static/images/semantic/2/conceptgraph.png" alt="ConceptGraphs"/>
+              <img src="./static/images/semantic/2/openfusion.png" alt="OpenFusion"/>
+              <img src="./static/images/semantic/2/ours.png" alt="Ours"/>
             </div>
             <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
-              <img src="./static/images/3D_sem/rgb_office2.png" alt="RGB"/>
+              <img src="./static/images/semantic/2/gt.png" alt="Semantic"/>
             </div>
           </div>
         </div>
-
         
-        
-        <div class="semantic_id scene0030_02">
-          <div style="display: flex;">
+        <div class="semantic room_0">
+          <div style="display: flex; gap: 10px;">
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+              <img src="./static/images/semantic/3/rgb.png" alt="RGB"/>
+            </div>
             <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
-              <img src="./static/images/3D_sem/ConceptFusion_0030.png" alt="ConceptFusion"/>
-              <img src="./static/images/3D_sem/ConceptGraphs_0030.png" alt="ConceptGraphs"/>
-              <img src="./static/images/3D_sem/Open-Fusion_0030.png" alt="Open-Fusion"/>
-              <img src="./static/images/3D_sem/ours_0030.png" alt="Ours"/>
+              <img src="./static/images/semantic/3/hov-sg.png" alt="HOV-SG"/>
+              <img src="./static/images/semantic/3/opengs.png" alt="OpenGaussian"/>
+              <img src="./static/images/semantic/3/langsplat.png" alt="LangSplat"/>
+              <img src="./static/images/semantic/3/ours.png" alt="Ours"/>
             </div>
             <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
-              <img src="./static/images/3D_sem/rgb_0030.png" alt="RGB"/>
+              <img src="./static/images/semantic/3/gt.png" alt="Semantic"/>
             </div>
           </div>
         </div>
-
         
-        
-        <div class="semantic_id scene0673_04">
-          <div style="display: flex;">
+        <div class="semantic scene0181_00">
+          <div style="display: flex; gap: 10px;">
+            <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
+              <img src="./static/images/semantic/4/rgb.png" alt="RGB"/>
+            </div>
             <div class="twentytwenty-container twentytwenty-compare-4" style="width:35%">
-              <img src="./static/images/3D_sem/ConceptFusion_0673.png" alt="ConceptFusion"/>
-              <img src="./static/images/3D_sem/ConceptGraphs_0673.png" alt="ConceptGraphs"/>
-              <img src="./static/images/3D_sem/Open-Fusion_0673.png" alt="Open-Fusion"/>
-              <img src="./static/images/3D_sem/ours_0673.png" alt="Ours"/>
+              <img src="./static/images/semantic/4/graspsplat.png" alt="GraspSplats"/>
+              <img src="./static/images/semantic/4/conceptfusion.png" alt="ConceptFusion"/>
+              <img src="./static/images/semantic/4/conceptgraph.png" alt="ConceptGraphs"/>
+              <img src="./static/images/semantic/4/ours.png" alt="Ours"/>
             </div>
             <div class="twentytwenty-container twentytwenty-compare-1" style="width:35%">
-              <img src="./static/images/3D_sem/rgb_0673.png" alt="RGB"/>
+              <img src="./static/images/semantic/4/gt.png" alt="Semantic"/>
             </div>
           </div>
         </div>
-
+        
 
         <div class="columns is-centered">
           <!-- Wheel -->
           <div class="column">
             <div class="content" center="">
-              <h4 class="title is-6 has-text-centered">Segmentation</h4>
+              <h4 class="title is-6 has-text-centered">GT RGB</h4>
+            </div>
+          </div>    
+          <div class="column">
+            <div class="content" center="">
+              <h4 class="title is-6 has-text-centered">Zero-shot semantic segmentation results</h4>
             </div>
           </div>
           <!-- Wheel -->
           <div class="column">
             <div class="content" center="">
-              <h4 class="title is-6 has-text-centered">GT RGB</h4>
+              <h4 class="title is-6 has-text-centered">GT Semantic</h4>
             </div>
           </div>
         </div>
 
         <br/>
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Open-vocabulary Instance Retrieval</h3>
-        <div class="video-wrapper">
-          <img id="teaser" src="./static/images/retrieval.png" alt="teaser" width="750">
-        </div>
-          <h2 class="subtitle has-text-centered">
-          </h2>
 
-          
+
+
+        <div class="columns is-centered">
+          <!-- Animation. -->
+          <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3">Applications</h2>
+
+            <h3 class="title is-4">Scene Q&A</h3>
+            <div class="video-wrapper" style="display: flex;justify-content: center;gap: 40px;margin: 20px 0;flex-wrap: wrap;
+            ">
+              <!-- 2D 图片 + 文字 -->
+              <div style="width: 350px; text-align: center;">
+                <img 
+                  src="./static/images/qa_2d.png" 
+                  alt="2D Scene" 
+                  style="width: 100%; height: 300px; object-fit: fill;"
+                >
+                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">2D modality</h4>
+              </div>
+            
+              <!-- 3D 图片 + 文字 -->
+              <div style="width: 350px; text-align: center;">
+                <img 
+                  src="./static/images/qa_3d.png" 
+                  alt="3D Scene" 
+                  style="width: 100%; height: 300px; object-fit: fill;"
+                >
+                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">3D modality</h4>
+              </div>
+            </div>
+            <h2 class="subtitle has-text-centered"></h2>
+
+
+            <h3 class="title is-4">Interactive Editing</h3>
+            <div class="video-wrapper" style="display: flex;justify-content: center;gap: 40px;margin: 20px 0;flex-wrap: wrap;
+            ">
+              <div style="width: 350px; text-align: center;">
+                <img 
+                  src="./static/images/edit_1.png" 
+                  alt="2D Scene" 
+                  style="width: 100%; height: 280px; object-fit: fill;"
+                >
+              </div>
+
+              <div style="width: 350px; text-align: center;">
+                <img 
+                  src="./static/images/edit_2.png" 
+                  alt="3D Scene" 
+                  style="width: 100%; height: 280px; object-fit: fill;"
+                >
+              </div>
+            </div>
+            <h2 class="subtitle has-text-centered"></h2>
+
+
 
         <br/>
-        <!--/ Re-rendering. -->
         <!-- Re-rendering. -->
-        <h3 class="title is-4">Real-World Onboard Experiment</h3>
+        <h3 class="title is-4">In-place Manipulation</h3>
         <div class="video-wrapper">
           <video id="teaser" controls class="video-size">
-            <source src="./static/video/realWorld.mp4" type="video/mp4">
+            <source src="./static/video/arm.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
           
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf"> OpenVox has the ability to run online in the real world.. </span>
+        <span class="dnerf"> OmniMap supports robotic arm operations by reconstructing workspace optics, geometry, and semantics. </span>
       </h2>
-
-          
-        <img id="teaser" src="./static/images/real_car.jpg" alt="teaser" width="600" >
         </div>
-        
+
+        <br/>
+
+
+        <h3 class="title is-4">Mobile Navigation</h3>
+        <div class="video-wrapper">
+          <video id="teaser" controls class="video-size">
+            <source src="./static/video/robot.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf"> OmniMap enables mobile robot navigation experiments. </span>
+      </h2>
+        </div>
         
         
 
