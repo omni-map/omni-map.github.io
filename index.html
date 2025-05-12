@@ -659,7 +659,7 @@
 
         <br/>
         <!-- Re-rendering. -->
-        <h3 class="title is-4">In-place Manipulation</h3>
+        <!-- <h3 class="title is-4">In-place Manipulation</h3>
         <div class="video-wrapper">
           <video id="teaser" controls class="video-size">
             <source src="./static/video/arm.mp4" type="video/mp4">
@@ -684,9 +684,54 @@
       <h2 class="subtitle has-text-centered">
         <span class="dnerf"> OmniMap enables mobile robot navigation experiments. </span>
       </h2>
-        </div>
+        </div> -->
         
-        
+
+  <!-- In-place Manipulation -->
+  <section>
+    <h3 class="title is-4 has-text-centered">In-place Manipulation</h3>
+    <div class="video-wrapper">
+      <img class="placeholder-img" data-video-src="./static/video/arm.mp4" src="./static/images/arm-placeholder.png" alt="In-place Manipulation Placeholder">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">OmniMap supports robotic arm operations by reconstructing workspace optics, geometry, and semantics.</span>
+      </h2>
+    </div>
+  </section>
+
+  <br/>
+
+  <!-- Mobile Navigation -->
+  <section>
+    <h3 class="title is-4 has-text-centered">Mobile Navigation</h3>
+    <div class="video-wrapper">
+      <img class="placeholder-img" data-video-src="./static/video/robot.mp4" src="./static/images/robot-placeholder.png" alt="Mobile Navigation Placeholder">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">OmniMap enables mobile robot navigation experiments.</span>
+      </h2>
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll('.placeholder-img').forEach(img => {
+      img.addEventListener('click', function() {
+        const videoSrc = this.getAttribute('data-video-src');
+        const video = document.createElement('video');
+        video.className = 'video-size';
+        video.controls = true;
+        video.innerHTML = `
+          <source src="${videoSrc}" type="video/mp4">
+          Your browser does not support the video tag.
+        `;
+        this.parentNode.replaceChild(video, this);
+        video.play().catch(error => {
+          console.error('Auto-play failed:', error);
+        });
+      });
+    });
+  </script>
+
+
+
 
     <!--/ Animation. -->
     </div>
