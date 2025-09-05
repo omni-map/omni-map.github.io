@@ -51,13 +51,15 @@
     </script>
   <style>
     .video-wrapper {
-      text-align: center; /* 水平居中 */
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 20px; /* 视频之间的间距 */
     }
 
     .video-size {
-      width: 80%;  /* 控制视频宽度 */
+      width: 100%;  /* 控制视频宽度 */
       height: auto; /* 保持视频纵横比 */
-      margin: 0 auto; /* 保证视频在块级元素中居中 */
     }
 
 
@@ -80,6 +82,35 @@
       color: #4a4a4a;
       margin-top: 0.25rem; /* 与标题的间距稍小，约 4px */
       margin-bottom: 0.5rem; /* 与视频容器的间距适中，约 8px */
+    }
+
+    .video-caption {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .video-container {
+      flex: 1;
+      max-width: 45%; /* 每个视频占大约一半宽度 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .video-container1 {
+      flex: 1;
+      max-width: 95%; /* 每个视频占大约一半宽度 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .placeholder-img, .video-size {
+      width: 100%;
+      height: auto;
+      object-fit: cover; /* 确保视频或占位图自适应容器 */
     }
 
     .item1 {
@@ -118,10 +149,13 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">OmniMap: A Comprehensive Mapping Framework Integrating Optics, Geometry, and Semantics</h1>
-          <!-- <h1 class="title is-4 publication-title"> IROS 2025 Under Review</h1> -->
+          <h1 class="title is-4 publication-title">IEEE Transactions on Robotics (TRO) 2025</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://bit-dyn.github.io/">Yinan Deng</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://yfyue-bit.github.io/">Yufeng Yue</a><sup>1</sup><sup>*</sup>
+            </span>            
             <span class="author-block">
               <a href=" ">Jianyu Dou</a><sup>1</sup>,</span>
             <span class="author-block">
@@ -134,19 +168,10 @@
               <a href="https://bit-tyj.github.io/">Yujie Tang</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href=" ">Chenjie Zhao</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href=" ">Tiancheng Liu</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href=" ">Tianxing Zhou</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
               <a href=" ">Yi Yang</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://yfyue-bit.github.io/">Yufeng Yue</a><sup>1</sup><sup>*</sup>
+              <a href=" ">Mengyin Fu</a><sup>1</sup>,
             </span>
           </div>
 
@@ -156,11 +181,14 @@
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>*</sup>Corresponding Author</span>
           </div>
+          
           <div class="column has-text-centered">
+
+
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2502.16528"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -169,7 +197,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2502.16528"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -177,19 +205,9 @@
                   <span>arXiv</span>
                 </a>
               </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=nO1PyF6hSTo"
-                    class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/BIT-DYN/OpenVox"
+                <a href="https://github.com/BIT-DYN/omnimap"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -223,19 +241,6 @@
   </div>
 </section>
 
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Video</h2>
-          <div class="publication-video">
-            <iframe src="https://www.youtube.com/embed/nO1PyF6hSTo?si=8fkFUW7-_j2WTMYx"
-                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-  </div>
-</section> -->
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -290,6 +295,7 @@
       <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Benchmark Results</h2>
+
         <p class="has-text-centered video-prompt">Tips: please refresh the page if the display is incomplete</p>
 
         <!-- Interpolating. -->
@@ -609,7 +615,26 @@
 
         <br/>
 
+        <!-- Online Mapping -->
+        <section>
+          <h3 class="title is-4">Online Mapping</h3>
+          <p class="has-text-centered video-prompt">Tips: please click to view the video</p>
+          <div class="video-wrapper">
+            <div class="video-container">
+              <img class="placeholder-img" data-video-src="./static/video/Online_Mapping_room0.mp4" src="./static/images/room0_placeholder.png" alt="Online Mapping room0 Placeholder">
+              <p>Replica-room_0</p>
+            </div>
+            <div class="video-container">
+              <img class="placeholder-img" data-video-src="./static/video/Online_Mapping_scene0106_00.mp4" src="./static/images/scene0106_00_placeholder.png" alt="Online Mapping scene0106_00 Placeholder">
+              <p>ScanNet-scene0106_00</p>
+            </div>
+            <h2 class="subtitle has-text-centered">
+            </h2>
+          </div>
+        </section>
 
+        <br/>
+        <br/>
 
         <div class="columns is-centered">
           <!-- Animation. -->
@@ -627,7 +652,7 @@
                   alt="2D Scene" 
                   style="width: 100%; height: 300px; object-fit: fill;"
                 >
-                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">2D modality</h4>
+                <!-- <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">2D modality</h4> -->
               </div>
             
               <!-- 3D 图片 + 文字 -->
@@ -637,12 +662,12 @@
                   alt="3D Scene" 
                   style="width: 100%; height: 300px; object-fit: fill;"
                 >
-                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">3D modality</h4>
+                <!-- <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">3D modality</h4> -->
               </div>
             </div>
             <h2 class="subtitle has-text-centered"></h2>
 
-
+            <br/>
             <h3 class="title is-4">Interactive Editing</h3>
             <div class="video-wrapper" style="display: flex;justify-content: center;gap: 40px;margin: 20px 0;flex-wrap: wrap;
             ">
@@ -667,80 +692,58 @@
 
 
         <br/>
-        <!-- Re-rendering. -->
-        <!-- <h3 class="title is-4">In-place Manipulation</h3>
-        <div class="video-wrapper">
-          <video id="teaser" controls class="video-size">
-            <source src="./static/video/arm.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf"> OmniMap supports robotic arm operations by reconstructing workspace optics, geometry, and semantics. </span>
-      </h2>
-        </div>
 
-        <br/>
-
-
-        <h3 class="title is-4">Mobile Navigation</h3>
-        <div class="video-wrapper">
-          <video id="teaser" controls class="video-size">
-            <source src="./static/video/robot.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf"> OmniMap enables mobile robot navigation experiments. </span>
-      </h2>
-        </div> -->
-        
 
   <!-- In-place Manipulation -->
   <section>
     <h3 class="title is-4 has-text-centered">In-place Manipulation</h3>
     <p class="has-text-centered video-prompt">Tips: please click to view the video</p>
     <div class="video-wrapper">
-      <img class="placeholder-img" data-video-src="./static/video/arm.mp4" src="./static/images/arm-placeholder.png" alt="In-place Manipulation Placeholder">
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">OmniMap supports robotic arm operations by reconstructing workspace optics, geometry, and semantics.</span>
-      </h2>
+      <div class="video-container1">
+        <img class="placeholder-img" data-video-src="./static/video/arm.mp4" src="./static/images/arm-placeholder.png" alt="In-place Manipulation Placeholder">
+        <p class="video-caption dnerf">OmniMap supports robotic arm operations by reconstructing workspace optics, geometry, and semantics.</p>
+      </div>
+      <h2 class="subtitle has-text-centered"></h2>
     </div>
   </section>
 
   <br/>
-
   <!-- Mobile Navigation -->
   <section>
     <h3 class="title is-4 has-text-centered">Mobile Navigation</h3>
     <p class="has-text-centered video-prompt">Tips: please click to view the video</p>
     <div class="video-wrapper">
-      <img class="placeholder-img" data-video-src="./static/video/robot.mp4" src="./static/images/robot-placeholder.png" alt="Mobile Navigation Placeholder">
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">OmniMap enables mobile robot navigation experiments.</span>
-      </h2>
+      <div class="video-container1">
+        <img class="placeholder-img" data-video-src="./static/video/robot.mp4" src="./static/images/robot-placeholder.png" alt="Mobile Navigation Placeholder">
+        <p class="video-caption dnerf">OmniMap enables mobile robot navigation experiments.</p>
+      </div>
+      <h2 class="subtitle has-text-centered"></h2>
     </div>
   </section>
 
-  <script>
-    document.querySelectorAll('.placeholder-img').forEach(img => {
-      img.addEventListener('click', function() {
-        const videoSrc = this.getAttribute('data-video-src');
-        const video = document.createElement('video');
-        video.className = 'video-size';
-        video.controls = true;
-        video.innerHTML = `
-          <source src="${videoSrc}" type="video/mp4">
-          Your browser does not support the video tag.
-        `;
-        this.parentNode.replaceChild(video, this);
-        video.play().catch(error => {
-          console.error('Auto-play failed:', error);
-        });
+
+<script>
+  document.querySelectorAll('.placeholder-img').forEach(img => {
+    img.addEventListener('click', function() {
+      const videoSrc = this.getAttribute('data-video-src');
+      const caption = this.nextElementSibling; // 保留字幕
+      const video = document.createElement('video');
+      video.className = 'video-size';
+      video.controls = true;
+      video.innerHTML = `
+        <source src="${videoSrc}" type="video/mp4">
+        Your browser does not support the video tag.
+      `;
+      this.parentNode.replaceChild(video, this);
+      if (caption) {
+        video.parentNode.appendChild(caption); // 重新附加字幕
+      }
+      video.play().catch(error => {
+        console.error('Auto-play failed:', error);
       });
     });
-  </script>
-
+  });
+</script>
 
 
 

@@ -1,6 +1,4 @@
-# uni-map.github.io
-
-link: https://omni-map.github.io/
+link: https://omnimap123.github.io
 
 git pull
 
